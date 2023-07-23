@@ -7,6 +7,7 @@ import Data.List
 type Status = Bool
 
 data Cashier = Cashier Status Integer Integer Integer
+  deriving (Show)
 
 solute :: [Integer] -> Bool
 solute bills = result
