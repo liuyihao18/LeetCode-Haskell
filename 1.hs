@@ -4,6 +4,7 @@ module Solution where
 
 import Data.List
 import Data.Map qualified as Map
+import IO
 
 data Result = Result Bool Int Int
   deriving (Show)
@@ -64,19 +65,25 @@ nums3 = [3, 3]
 target3 :: Integer
 target3 = 6
 
+input :: [Integer] -> Integer -> IO ()
+input = input2 "nums" "target"
+
+output :: [Integer] -> IO ()
+output = output1
+
 main :: IO ()
 main = do
   putStrLn "-------- Method 1 --------"
-  putStrLn ("Input:\tnums = " ++ show nums1 ++ ", " ++ "target = " ++ show target1)
-  putStrLn ("Output:\t" ++ show (solute nums1 target1))
-  putStrLn ("Input:\tnums = " ++ show nums2 ++ ", " ++ "target = " ++ show target2)
-  putStrLn ("Output:\t" ++ show (solute nums2 target2))
-  putStrLn ("Input:\tnums = " ++ show nums3 ++ ", " ++ "target = " ++ show target3)
-  putStrLn ("Output:\t" ++ show (solute nums3 target3))
+  input nums1 target1
+  output (solute nums1 target1)
+  input nums2 target2
+  output (solute nums2 target2)
+  input nums3 target3
+  output (solute nums3 target3)
   putStrLn "-------- Method 2 --------"
-  putStrLn ("Input:\tnums = " ++ show nums1 ++ ", " ++ "target = " ++ show target1)
-  putStrLn ("Output:\t" ++ show (solute2 nums1 target1))
-  putStrLn ("Input:\tnums = " ++ show nums2 ++ ", " ++ "target = " ++ show target2)
-  putStrLn ("Output:\t" ++ show (solute2 nums2 target2))
-  putStrLn ("Input:\tnums = " ++ show nums3 ++ ", " ++ "target = " ++ show target3)
-  putStrLn ("Output:\t" ++ show (solute2 nums3 target3))
+  input nums1 target1
+  output (solute2 nums1 target1)
+  input nums2 target2
+  output (solute2 nums2 target2)
+  input nums3 target3
+  output (solute2 nums3 target3)

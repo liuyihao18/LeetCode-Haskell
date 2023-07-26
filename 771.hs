@@ -4,6 +4,7 @@ module Solution where
 
 import Data.List
 import Data.Set qualified as Set
+import IO
 
 solute :: String -> String -> Integer
 solute jewels = foldl' (count s) 0
@@ -27,9 +28,15 @@ jewels2 = "z"
 stones2 :: String
 stones2 = "ZZ"
 
+input :: String -> String -> IO ()
+input = input2 "jewels" "stones"
+
+output :: Integer -> IO ()
+output = output1
+
 main :: IO ()
 main = do
-  putStrLn ("Input:\tjewels = " ++ show jewels1 ++ ", " ++ "stones = " ++ show stones1)
-  putStrLn ("Output:\t" ++ show (solute jewels1 stones1))
-  putStrLn ("Input:\tjewels = " ++ show jewels2 ++ ", " ++ "stones = " ++ show stones2)
-  putStrLn ("Output:\t" ++ show (solute jewels2 stones2))
+  input jewels1 stones1
+  output (solute jewels1 stones1)
+  input jewels2 stones2
+  output (solute jewels2 stones2)

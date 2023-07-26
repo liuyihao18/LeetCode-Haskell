@@ -2,6 +2,8 @@
 
 module Solution where
 
+import IO
+
 toDigits :: Integer -> [Integer]
 toDigits 0 = []
 toDigits n = n `mod` 10 : toDigits (n `div` 10)
@@ -23,11 +25,17 @@ n2 = 111
 n3 :: Integer
 n3 = 886996
 
+input :: Integer -> IO ()
+input = input1 "n"
+
+output :: Integer -> IO ()
+output = output1
+
 main :: IO ()
 main = do
-  putStrLn ("Input:\tn = " ++ show n1)
-  putStrLn ("Output:\t" ++ show (solute n1))
-  putStrLn ("Input:\tn = " ++ show n2)
-  putStrLn ("Output:\t" ++ show (solute n2))
-  putStrLn ("Input:\tn = " ++ show n3)
-  putStrLn ("Output:\t" ++ show (solute n3))
+  input n1
+  output (solute n1)
+  input n2
+  output (solute n2)
+  input n3
+  output (solute n3)

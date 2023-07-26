@@ -2,6 +2,8 @@
 
 module Solution where
 
+import IO
+
 solute :: [Integer] -> [Integer] -> [Integer]
 solute l1 l2 = carry 0 $ add l1 l2
 
@@ -36,11 +38,17 @@ l13 = [9, 9, 9, 9, 9, 9, 9]
 l23 :: [Integer]
 l23 = [9, 9, 9, 9]
 
+input :: [Integer] -> [Integer] -> IO ()
+input = input2 "l1" "l2"
+
+output :: [Integer] -> IO ()
+output = output1
+
 main :: IO ()
 main = do
-  putStrLn ("Input:\tl1 = " ++ show l11 ++ ", " ++ "l1 = " ++ show l21)
-  putStrLn ("Output:\t" ++ show (solute l11 l21))
-  putStrLn ("Input:\tl1 = " ++ show l12 ++ ", " ++ "l1 = " ++ show l22)
-  putStrLn ("Output:\t" ++ show (solute l12 l22))
-  putStrLn ("Input:\tl1 = " ++ show l13 ++ ", " ++ "l1 = " ++ show l23)
-  putStrLn ("Output:\t" ++ show (solute l13 l23))
+  input l11 l21
+  output (solute l11 l12)
+  input l12 l22
+  output (solute l12 l22)
+  input l13 l23
+  output (solute l13 l23)

@@ -4,6 +4,7 @@ module Solution where
 
 import Data.Heap qualified as Heap
 import Data.Maybe
+import IO
 
 solute :: [Integer] -> Integer
 solute nums = divide2 s s heap 0
@@ -32,11 +33,17 @@ nums2 = [3, 8, 20]
 nums3 :: [Integer]
 nums3 = [1, 5, 1, 7, 1, 33, 123, 5, 6, 12, 3, 5, 1, 53, 6, 6, 5, 1, 2, 5, 6, 1, 3, 5, 46, 1, 56, 1, 23, 6, 34, 7, 8, 2, 8, 68, 68, 45, 235]
 
+input :: [Integer] -> IO ()
+input = input1 "nums"
+
+output :: Integer -> IO ()
+output = output1
+
 main :: IO ()
 main = do
-  putStrLn ("Input:\tnums = " ++ show nums1)
-  putStrLn ("Output:\t" ++ show (solute nums1))
-  putStrLn ("Input:\tjnums = " ++ show nums2)
-  putStrLn ("Output:\t" ++ show (solute nums2))
-  putStrLn ("Input:\tjnums = " ++ show nums3)
-  putStrLn ("Output:\t" ++ show (solute nums3))
+  input nums1
+  output (solute nums1)
+  input nums2
+  output (solute nums2)
+  input nums3
+  output (solute nums3)

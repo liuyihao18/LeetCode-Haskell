@@ -3,6 +3,7 @@
 module Solution where
 
 import Data.List
+import IO
 
 type Status = Bool
 
@@ -32,9 +33,15 @@ bills1 = [5, 5, 5, 10, 20]
 bills2 :: [Integer]
 bills2 = [5, 5, 10, 10, 20]
 
+input :: [Integer] -> IO ()
+input = input1 "bills"
+
+output :: Bool -> IO ()
+output = output1
+
 main :: IO ()
 main = do
-  putStrLn ("Input:\tbills = " ++ show bills1)
-  putStrLn ("Output:\t" ++ show (solute bills1))
-  putStrLn ("Input:\tbills = " ++ show bills2)
-  putStrLn ("Output:\t" ++ show (solute bills2))
+  input bills1
+  output (solute bills1)
+  input bills2
+  output (solute bills2)
