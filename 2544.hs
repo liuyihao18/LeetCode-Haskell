@@ -4,6 +4,9 @@ module Solution where
 
 import IO
 
+solute :: Integer -> Integer
+solute = sum . addSign . reverse . toDigits
+
 toDigits :: Integer -> [Integer]
 toDigits 0 = []
 toDigits n = n `mod` 10 : toDigits (n `div` 10)
@@ -12,9 +15,6 @@ addSign :: [Integer] -> [Integer]
 addSign [] = []
 addSign [x] = [x]
 addSign (x : y : ys) = x : (-y) : addSign ys
-
-solute :: Integer -> Integer
-solute = sum . addSign . reverse . toDigits
 
 n1 :: Integer
 n1 = 521
