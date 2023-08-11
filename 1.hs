@@ -9,8 +9,8 @@ import IO
 data Result = Result Bool Int Int
   deriving (Show)
 
-solute :: [Integer] -> Integer -> [Integer]
-solute nums target = toIndex (foldl' (check nums target) result index)
+twoSum :: [Integer] -> Integer -> [Integer]
+twoSum nums target = toIndex (foldl' (check nums target) result index)
   where
     index = [(i, j) | i <- [0 .. length nums - 1], j <- [0 .. length nums - 1]]
     result = Result False (-1) (-1)
@@ -25,8 +25,8 @@ check nums target _ (i, j)
   | i /= j && nums !! i + nums !! j == target = Result True i j
   | otherwise = Result False (-1) (-1)
 
-solute2 :: [Integer] -> Integer -> [Integer]
-solute2 nums target = toIndex2 (foldl' (check2 nums target) result index)
+twoSum2 :: [Integer] -> Integer -> [Integer]
+twoSum2 nums target = toIndex2 (foldl' (check2 nums target) result index)
   where
     index = [0 .. length nums - 1]
     result = Result2 False Map.empty (-1) (-1)
@@ -75,15 +75,15 @@ main :: IO ()
 main = do
   putStrLn "-------- Method 1 --------"
   input nums1 target1
-  output (solute nums1 target1)
+  output (twoSum nums1 target1)
   input nums2 target2
-  output (solute nums2 target2)
+  output (twoSum nums2 target2)
   input nums3 target3
-  output (solute nums3 target3)
+  output (twoSum nums3 target3)
   putStrLn "-------- Method 2 --------"
   input nums1 target1
-  output (solute2 nums1 target1)
+  output (twoSum2 nums1 target1)
   input nums2 target2
-  output (solute2 nums2 target2)
+  output (twoSum2 nums2 target2)
   input nums3 target3
-  output (solute2 nums3 target3)
+  output (twoSum2 nums3 target3)

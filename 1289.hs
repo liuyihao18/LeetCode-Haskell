@@ -6,8 +6,8 @@ import Data.Array
 import Data.List
 import IO
 
-solute :: [[Integer]] -> Integer
-solute grid = getRowMin dp (n - 1) (-1)
+minFallingPathSum :: [[Integer]] -> Integer
+minFallingPathSum grid = getRowMin dp (n - 1) (-1)
   where
     n = length grid
     dp =
@@ -52,8 +52,8 @@ output = output1
 main :: IO ()
 main = do
   input grid1
-  output (solute grid1)
+  output (minFallingPathSum grid1)
   input grid2
-  output (solute grid2)
+  output (minFallingPathSum grid2)
   input grid3
-  output (solute grid3)
+  output (minFallingPathSum grid3)

@@ -4,8 +4,8 @@ module Solution where
 
 import IO
 
-solute :: [Integer] -> [Integer] -> [Integer]
-solute l1 l2 = carry 0 $ add l1 l2
+addTwoNumbers :: [Integer] -> [Integer] -> [Integer]
+addTwoNumbers l1 l2 = carry 0 $ add l1 l2
 
 add :: [Integer] -> [Integer] -> [Integer]
 add xs [] = xs
@@ -47,8 +47,8 @@ output = output1
 main :: IO ()
 main = do
   input l11 l21
-  output (solute l11 l12)
+  output (addTwoNumbers l11 l12)
   input l12 l22
-  output (solute l12 l22)
+  output (addTwoNumbers l12 l22)
   input l13 l23
-  output (solute l13 l23)
+  output (addTwoNumbers l13 l23)

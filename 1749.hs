@@ -4,8 +4,8 @@ module Solution where
 
 import IO
 
-solute :: [Integer] -> Integer
-solute nums = max (abs (maxSum nums 0 intMin)) (abs (maxSum (map negate nums) 0 intMin))
+maxAbsoluteSum :: [Integer] -> Integer
+maxAbsoluteSum nums = max (abs (maxSum nums 0 intMin)) (abs (maxSum (map negate nums) 0 intMin))
 
 maxSum :: [Integer] -> Integer -> Integer -> Integer
 maxSum [] dp res = max dp res
@@ -32,8 +32,8 @@ nums3 = [-7, -1, 0, -2, 1, 3, 8, -2, -6, -1, -10, -6, -6, 8, -4, -9, -4, 1, 4, -
 main :: IO ()
 main = do
   input nums1
-  output (solute nums1)
+  output (maxAbsoluteSum nums1)
   input nums2
-  output (solute nums2)
+  output (maxAbsoluteSum nums2)
   input nums3
-  output (solute nums3)
+  output (maxAbsoluteSum nums3)

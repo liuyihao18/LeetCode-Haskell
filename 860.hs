@@ -10,8 +10,8 @@ type Status = Bool
 data Cashier = Cashier Status Integer Integer Integer
   deriving (Show)
 
-solute :: [Integer] -> Bool
-solute bills = result
+lemonadeChange :: [Integer] -> Bool
+lemonadeChange bills = result
   where
     (Cashier result _ _ _) = foldl' buy (Cashier True 0 0 0) bills
 
@@ -42,6 +42,6 @@ output = output1
 main :: IO ()
 main = do
   input bills1
-  output (solute bills1)
+  output (lemonadeChange bills1)
   input bills2
-  output (solute bills2)
+  output (lemonadeChange bills2)

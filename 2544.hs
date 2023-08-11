@@ -4,8 +4,8 @@ module Solution where
 
 import IO
 
-solute :: Integer -> Integer
-solute = sum . addSign . reverse . toDigits
+alternateDigitSum :: Integer -> Integer
+alternateDigitSum = sum . addSign . reverse . toDigits
 
 toDigits :: Integer -> [Integer]
 toDigits 0 = []
@@ -34,8 +34,8 @@ output = output1
 main :: IO ()
 main = do
   input n1
-  output (solute n1)
+  output (alternateDigitSum n1)
   input n2
-  output (solute n2)
+  output (alternateDigitSum n2)
   input n3
-  output (solute n3)
+  output (alternateDigitSum n3)

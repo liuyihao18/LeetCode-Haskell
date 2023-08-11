@@ -6,8 +6,8 @@ import Data.Heap qualified as Heap
 import Data.Maybe
 import IO
 
-solute :: [Integer] -> Integer
-solute nums = divide2 s s heap 0
+halveArray :: [Integer] -> Integer
+halveArray nums = divide2 s s heap 0
   where
     s = sum (map fromInteger nums)
     heap = Heap.fromList (map fromInteger nums)
@@ -42,8 +42,8 @@ output = output1
 main :: IO ()
 main = do
   input nums1
-  output (solute nums1)
+  output (halveArray nums1)
   input nums2
-  output (solute nums2)
+  output (halveArray nums2)
   input nums3
-  output (solute nums3)
+  output (halveArray nums3)

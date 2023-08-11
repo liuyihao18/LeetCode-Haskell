@@ -7,8 +7,8 @@ import IO
 
 data Result = Result {preSum :: Integer, power :: Integer}
 
-solute :: [Integer] -> Integer
-solute nums = power $ foldl' travel (Result 0 0) sortedNums
+sumOfPower :: [Integer] -> Integer
+sumOfPower nums = power $ foldl' travel (Result 0 0) sortedNums
   where
     sortedNums = sort nums
 
@@ -40,8 +40,8 @@ output = output1
 main :: IO ()
 main = do
   input nums1
-  output (solute nums1)
+  output (sumOfPower nums1)
   input nums2
-  output (solute nums2)
+  output (sumOfPower nums2)
   input nums3
-  output (solute nums3)
+  output (sumOfPower nums3)

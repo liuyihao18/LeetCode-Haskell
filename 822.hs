@@ -6,8 +6,8 @@ import Data.List
 import Data.Set qualified as Set
 import IO
 
-solute :: [Integer] -> [Integer] -> Integer
-solute fronts backs = minimum (filter (`Set.notMember` same) fronts) `min` minimum (filter (`Set.notMember` same) backs)
+flipgame :: [Integer] -> [Integer] -> Integer
+flipgame fronts backs = minimum (filter (`Set.notMember` same) fronts) `min` minimum (filter (`Set.notMember` same) backs)
   where
     same = foldl' findSame Set.empty (zip fronts backs)
 
@@ -31,4 +31,4 @@ output = output1
 main :: IO ()
 main = do
   input fronts1 backs1
-  output (solute fronts1 backs1)
+  output (flipgame fronts1 backs1)

@@ -4,8 +4,8 @@ module Solution where
 
 import IO
 
-solute :: Integer -> Integer
-solute n = product digits - sum digits
+subtractProductAndSum :: Integer -> Integer
+subtractProductAndSum n = product digits - sum digits
   where
     digits = toDigits n
 
@@ -28,6 +28,6 @@ n2 = 4421
 main :: IO ()
 main = do
   input n1
-  output (solute n1)
+  output (subtractProductAndSum n1)
   input n2
-  output (solute n2)
+  output (subtractProductAndSum n2)

@@ -6,8 +6,8 @@ import Data.List
 import Data.Set qualified as Set
 import IO
 
-solute :: String -> String -> Integer
-solute jewels = foldl' (count s) 0
+numJewelsInStones :: String -> String -> Integer
+numJewelsInStones jewels = foldl' (count s) 0
   where
     s = Set.fromList jewels
 
@@ -37,6 +37,6 @@ output = output1
 main :: IO ()
 main = do
   input jewels1 stones1
-  output (solute jewels1 stones1)
+  output (numJewelsInStones jewels1 stones1)
   input jewels2 stones2
-  output (solute jewels2 stones2)
+  output (numJewelsInStones jewels2 stones2)

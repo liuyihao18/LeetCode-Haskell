@@ -4,8 +4,8 @@ module Solution where
 
 import IO
 
-solute :: [[Integer]] -> Integer
-solute mat = sum $ map (extractSum mat . generate n) [0 .. n - 1]
+diagonalSum :: [[Integer]] -> Integer
+diagonalSum mat = sum $ map (extractSum mat . generate n) [0 .. n - 1]
   where
     n = length mat
 
@@ -46,8 +46,8 @@ output = output1
 main :: IO ()
 main = do
   input mat1
-  output (solute mat1)
+  output (diagonalSum mat1)
   input mat2
-  output (solute mat2)
+  output (diagonalSum mat2)
   input mat3
-  output (solute mat3)
+  output (diagonalSum mat3)
