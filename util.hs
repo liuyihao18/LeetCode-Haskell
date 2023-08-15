@@ -22,3 +22,9 @@ removeBrackets = takeWhile (/= ']') . dropWhile (== '[')
 
 addBrackets :: String -> String
 addBrackets str = "[" ++ str ++ "]"
+
+takeRange :: Int -> Int -> [a] -> [a]
+takeRange l r = take (r - l) . drop l
+
+takeNAtP :: Int -> Int -> [a] -> [a]
+takeNAtP p n = take n . drop p
