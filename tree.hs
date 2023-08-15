@@ -9,6 +9,10 @@ data Tree a
   = TreeNode {val :: a, left :: Tree a, right :: Tree a}
   | Empty
 
+instance Functor Tree where
+  fmap _ Empty = Empty
+  fmap f (TreeNode val left right) = TreeNode (f val) (fmap f left) (fmap f right)
+
 instance Show a => Show (Tree a) where
   show = toString
 
