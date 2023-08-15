@@ -30,7 +30,7 @@ toString :: Show a => Tree a -> String
 toString = addBrackets . unWordsWith ',' . toList
 
 toList :: Show a => Tree a -> [String]
-toList = reverse . dropWhile (== "null") . reverse . _toList . singleton
+toList = dropWhileEnd (== "null") . _toList . singleton
 
 -- BFS
 _toList :: Show a => [Tree a] -> [String]
