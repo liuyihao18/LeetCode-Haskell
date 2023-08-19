@@ -5,12 +5,12 @@ module Solution where
 import Data.Heap qualified as Heap
 import IO
 
-mergeKLists :: [[Integer]] -> [Integer]
+mergeKLists :: [[Int]] -> [Int]
 mergeKLists lists = merge heap []
   where
     heap = Heap.fromList $ map reverse lists
 
-merge :: Heap.MaxHeap [Integer] -> [Integer] -> [Integer]
+merge :: Heap.MaxHeap [Int] -> [Int] -> [Int]
 merge heap list = case top of
   (Just ([], newHeap)) -> merge newHeap list
   (Just (x : xs, newHeap)) -> merge (Heap.insert xs newHeap) (x : list)
@@ -18,19 +18,19 @@ merge heap list = case top of
   where
     top = Heap.view heap
 
-lists1 :: [[Integer]]
+lists1 :: [[Int]]
 lists1 = [[1, 4, 5], [], [1, 3, 4], [2, 6], [], []]
 
-lists2 :: [[Integer]]
+lists2 :: [[Int]]
 lists2 = []
 
-lists3 :: [[Integer]]
+lists3 :: [[Int]]
 lists3 = [[]]
 
-input :: [[Integer]] -> IO ()
+input :: [[Int]] -> IO ()
 input = input1 "lists"
 
-output :: [Integer] -> IO ()
+output :: [Int] -> IO ()
 output = output1
 
 main :: IO ()

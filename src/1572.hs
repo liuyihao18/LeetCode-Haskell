@@ -4,7 +4,7 @@ module Solution where
 
 import IO
 
-diagonalSum :: [[Integer]] -> Integer
+diagonalSum :: [[Int]] -> Int
 diagonalSum mat = sum $ map (extractSum mat . generate n) [0 .. n - 1]
   where
     n = length mat
@@ -14,19 +14,19 @@ generate :: Int -> Int -> ((Int, Int), (Int, Int))
 generate n i = ((i, i), (i, n - i - 1))
 
 -- Remove the duplicate one.
-extractSum :: [[Integer]] -> ((Int, Int), (Int, Int)) -> Integer
+extractSum :: [[Int]] -> ((Int, Int), (Int, Int)) -> Int
 extractSum mat ((i1, j1), (i2, j2))
   | j1 /= j2 = mat !! i1 !! j1 + mat !! i2 !! j2
   | otherwise = mat !! i1 !! j1
 
-mat1 :: [[Integer]]
+mat1 :: [[Int]]
 mat1 =
   [ [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9]
   ]
 
-mat2 :: [[Integer]]
+mat2 :: [[Int]]
 mat2 =
   [ [1, 1, 1, 1],
     [1, 1, 1, 1],
@@ -34,13 +34,13 @@ mat2 =
     [1, 1, 1, 1]
   ]
 
-mat3 :: [[Integer]]
+mat3 :: [[Int]]
 mat3 = [[5]]
 
-input :: [[Integer]] -> IO ()
+input :: [[Int]] -> IO ()
 input = input1 "mat"
 
-output :: Integer -> IO ()
+output :: Int -> IO ()
 output = output1
 
 main :: IO ()

@@ -6,26 +6,26 @@ import Data.List
 import Data.Set qualified as Set
 import IO
 
-flipgame :: [Integer] -> [Integer] -> Integer
+flipgame :: [Int] -> [Int] -> Int
 flipgame fronts backs = minimum (filter (`Set.notMember` same) fronts) `min` minimum (filter (`Set.notMember` same) backs)
   where
     same = foldl' findSame Set.empty (zip fronts backs)
 
-findSame :: Set.Set Integer -> (Integer, Integer) -> Set.Set Integer
+findSame :: Set.Set Int -> (Int, Int) -> Set.Set Int
 findSame s (front, back)
   | front == back = Set.insert front s
   | otherwise = s
 
-fronts1 :: [Integer]
+fronts1 :: [Int]
 fronts1 = [1, 2, 4, 4, 7]
 
-backs1 :: [Integer]
+backs1 :: [Int]
 backs1 = [1, 3, 4, 1, 3]
 
-input :: [Integer] -> [Integer] -> IO ()
+input :: [Int] -> [Int] -> IO ()
 input = input2 "fronts" "backs"
 
-output :: Integer -> IO ()
+output :: Int -> IO ()
 output = output1
 
 main :: IO ()

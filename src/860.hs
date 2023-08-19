@@ -7,15 +7,15 @@ import IO
 
 type Status = Bool
 
-data Cashier = Cashier Status Integer Integer Integer
+data Cashier = Cashier Status Int Int Int
   deriving (Show)
 
-lemonadeChange :: [Integer] -> Bool
+lemonadeChange :: [Int] -> Bool
 lemonadeChange bills = result
   where
     (Cashier result _ _ _) = foldl' buy (Cashier True 0 0 0) bills
 
-buy :: Cashier -> Integer -> Cashier
+buy :: Cashier -> Int -> Cashier
 buy (Cashier False a b c) _ = Cashier False a b c
 buy (Cashier True a b c) 5 = Cashier True (a + 1) b c
 buy (Cashier True a b c) 10
@@ -27,13 +27,13 @@ buy (Cashier True a b c) 20
   | otherwise = Cashier False a b c
 buy (Cashier _ a b c) _ = Cashier False a b c
 
-bills1 :: [Integer]
+bills1 :: [Int]
 bills1 = [5, 5, 5, 10, 20]
 
-bills2 :: [Integer]
+bills2 :: [Int]
 bills2 = [5, 5, 10, 10, 20]
 
-input :: [Integer] -> IO ()
+input :: [Int] -> IO ()
 input = input1 "bills"
 
 output :: Bool -> IO ()

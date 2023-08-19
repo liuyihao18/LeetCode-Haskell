@@ -6,12 +6,12 @@ import Data.List
 import Data.Set qualified as Set
 import IO
 
-numJewelsInStones :: String -> String -> Integer
+numJewelsInStones :: String -> String -> Int
 numJewelsInStones jewels = foldl' (count s) 0
   where
     s = Set.fromList jewels
 
-count :: Set.Set Char -> Integer -> Char -> Integer
+count :: Set.Set Char -> Int -> Char -> Int
 count js cnt s
   | Set.member s js = cnt + 1
   | otherwise = cnt
@@ -31,7 +31,7 @@ stones2 = "ZZ"
 input :: String -> String -> IO ()
 input = input2 "jewels" "stones"
 
-output :: Integer -> IO ()
+output :: Int -> IO ()
 output = output1
 
 main :: IO ()

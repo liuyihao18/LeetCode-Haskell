@@ -4,25 +4,25 @@ module Solution where
 
 import IO
 
-subtractProductAndSum :: Integer -> Integer
+subtractProductAndSum :: Int -> Int
 subtractProductAndSum n = product digits - sum digits
   where
     digits = toDigits n
 
-toDigits :: Integer -> [Integer]
+toDigits :: Int -> [Int]
 toDigits 0 = []
 toDigits n = n `mod` 10 : toDigits (n `div` 10)
 
-input :: Integer -> IO ()
+input :: Int -> IO ()
 input = input1 "n"
 
-output :: Integer -> IO ()
+output :: Int -> IO ()
 output = output1
 
-n1 :: Integer
+n1 :: Int
 n1 = 234
 
-n2 :: Integer
+n2 :: Int
 n2 = 4421
 
 main :: IO ()
