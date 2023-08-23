@@ -3,6 +3,7 @@
 module Tree where
 
 import Data.List
+import Data.Vector qualified as V
 import Util
 
 data Tree a
@@ -20,15 +21,17 @@ fromString :: Read a => String -> Tree a
 fromString str = fromList $ map strip $ wordsWhen (== ',') $ removeBrackets str
 
 fromList :: Read a => [String] -> Tree a
-fromList list = _fromList list 0
+fromList list = _fromVector vector 0
+  where
+    vector = V.fromList list
 
 -- Index
-_fromList :: Read a => [String] -> Int -> Tree a
-_fromList list index
+_fromVector :: Read a => V.Vector String -> Int -> Tree a
+_fromVector vector index
   | index < 0 || index >= n = Empty
-  | otherwise = let val = (list !! index) in if val == "null" then Empty else TreeNode (read val) (_fromList list (2 * index + 1)) (_fromList list (2 * (index + 1)))
+  | otherwise = let val = (vector V.! index) in if val == "null" then Empty else TreeNode (read val) (_fromVector vector (2 * index + 1)) (_fromVector vector (2 * (index + 1)))
   where
-    n = length list
+    n = length vector
 
 toString :: Show a => Tree a -> String
 toString = addBrackets . unWordsWith ',' . toList

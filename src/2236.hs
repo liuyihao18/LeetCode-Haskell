@@ -12,7 +12,7 @@ checkTree (TreeNode _ _ Empty) = False
 checkTree (TreeNode v l r) = v == val l + val r
 
 root1 :: Tree Int
-root1 = fromString "[10, 4, 6]"
+root1 = fromString "[10,4,6]"
 
 root2 :: Tree Int
 root2 = fromString "[5,3,1]"
