@@ -3,17 +3,17 @@
 module Solution where
 
 import Data.List
-import Data.Set qualified as Set
+import Data.Set qualified as S
 import IO
 
 numJewelsInStones :: String -> String -> Int
 numJewelsInStones jewels = foldl' (count s) 0
   where
-    s = Set.fromList jewels
+    s = S.fromList jewels
 
-count :: Set.Set Char -> Int -> Char -> Int
+count :: S.Set Char -> Int -> Char -> Int
 count js cnt s
-  | Set.member s js = cnt + 1
+  | S.member s js = cnt + 1
   | otherwise = cnt
 
 jewels1 :: String

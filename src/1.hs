@@ -3,7 +3,7 @@
 module Solution where
 
 import Data.List
-import Data.Map qualified as Map
+import Data.Map qualified as M
 import IO
 
 data Result = Result Bool Int Int
@@ -29,9 +29,9 @@ twoSum2 :: [Int] -> Int -> [Int]
 twoSum2 nums target = toIndex2 (foldl' (check2 nums target) result index)
   where
     index = [0 .. length nums - 1]
-    result = Result2 False Map.empty (-1) (-1)
+    result = Result2 False M.empty (-1) (-1)
 
-data Result2 = Result2 Bool (Map.Map Int Int) Int Int
+data Result2 = Result2 Bool (M.Map Int Int) Int Int
   deriving (Show)
 
 toIndex2 :: Result2 -> [Int]
@@ -43,9 +43,9 @@ check2 _ _ res@(Result2 True _ _ _) _ = res
 check2 nums target (Result2 _ m _ _) i =
   case v of
     (Just j) -> Result2 True m i j
-    Nothing -> Result2 False (Map.insert (nums !! i) i m) (-1) (-1)
+    Nothing -> Result2 False (M.insert (nums !! i) i m) (-1) (-1)
   where
-    v = Map.lookup (target - nums !! i) m
+    v = M.lookup (target - nums !! i) m
 
 nums1 :: [Int]
 nums1 = [2, 7, 11, 15]

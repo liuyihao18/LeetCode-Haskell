@@ -2,7 +2,7 @@
 
 module Solution where
 
-import Data.Heap qualified as Heap
+import Data.Heap qualified as H
 import Data.Maybe
 import IO
 
@@ -10,19 +10,19 @@ halveArray :: [Int] -> Int
 halveArray nums = divide2 s s heap 0
   where
     s = sum (map fromIntegral nums)
-    heap = Heap.fromList (map fromIntegral nums)
+    heap = H.fromList (map fromIntegral nums)
 
 divide2 ::
   Double -> -- Origin Sum
   Double -> -- Current Sum
-  Heap.MaxHeap Double -> -- Priority Queue
+  H.MaxHeap Double -> -- Priority Queue
   Int -> -- Last Operation Count
   Int -- New Operation Count
 divide2 os cs heap cnt
   | cs * 2 <= os = cnt
-  | otherwise = divide2 os (cs - res + res / 2) (Heap.insert (res / 2) newHeap) (cnt + 1)
+  | otherwise = divide2 os (cs - res + res / 2) (H.insert (res / 2) newHeap) (cnt + 1)
   where
-    (res, newHeap) = fromMaybe (0, Heap.empty) (Heap.view heap)
+    (res, newHeap) = fromMaybe (0, H.empty) (H.view heap)
 
 nums1 :: [Int]
 nums1 = [5, 19, 8, 1]

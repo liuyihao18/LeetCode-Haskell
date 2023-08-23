@@ -3,17 +3,17 @@
 module Solution where
 
 import Data.List
-import Data.Set qualified as Set
+import Data.Set qualified as S
 import IO
 
 flipgame :: [Int] -> [Int] -> Int
-flipgame fronts backs = minimum (filter (`Set.notMember` same) fronts) `min` minimum (filter (`Set.notMember` same) backs)
+flipgame fronts backs = minimum (filter (`S.notMember` same) fronts) `min` minimum (filter (`S.notMember` same) backs)
   where
-    same = foldl' findSame Set.empty (zip fronts backs)
+    same = foldl' findSame S.empty (zip fronts backs)
 
-findSame :: Set.Set Int -> (Int, Int) -> Set.Set Int
+findSame :: S.Set Int -> (Int, Int) -> S.Set Int
 findSame s (front, back)
-  | front == back = Set.insert front s
+  | front == back = S.insert front s
   | otherwise = s
 
 fronts1 :: [Int]

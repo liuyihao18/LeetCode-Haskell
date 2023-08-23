@@ -3,7 +3,7 @@
 module Solution where
 
 import Data.List
-import Data.Map qualified as Map
+import Data.Map qualified as M
 import Data.Maybe
 import IO
 import Util
@@ -15,9 +15,9 @@ findReplaceString s indexes sources targets =
   foldl'
     ( \res index ->
         res
-          ++ if index `Map.member` m
+          ++ if index `M.member` m
             then
-              let i = fromJust (Map.lookup index m)
+              let i = fromJust (M.lookup index m)
                in findReplaceSubString s index (sources !! i) (targets !! i)
             else [s !! index]
     )
@@ -25,7 +25,7 @@ findReplaceString s indexes sources targets =
     ([0 .. length s - 1] \\ ignoreIndexes)
   where
     n = length indexes
-    m = foldr (\i -> Map.insert (indexes !! i) i) Map.empty [0 .. n - 1]
+    m = foldr (\i -> M.insert (indexes !! i) i) M.empty [0 .. n - 1]
     ignoreIndexes = genIgnoreIndexes indexes sources
 
 findReplaceSubString :: String -> Int -> String -> String -> String

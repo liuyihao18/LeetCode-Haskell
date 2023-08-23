@@ -2,8 +2,11 @@
 
 module Util where
 
+import Data.Char
+import Data.Vector qualified as V
+
 strip :: String -> String
-strip = takeWhile (/= ' ') . dropWhile (== ' ')
+strip = takeWhile (not . isSpace) . dropWhile isSpace
 
 wordsWhen :: (Char -> Bool) -> String -> [String]
 wordsWhen p s = case dropWhile p s of
@@ -29,44 +32,44 @@ takeRange l r = take (r - l) . drop l
 takeNAtP :: Int -> Int -> [a] -> [a]
 takeNAtP p n = take n . drop p
 
-bsearch :: [Int] -> Int -> Bool
-bsearch [] _ = False
-bsearch list target
-  | target > element = bsearch list2 target
-  | target < element = bsearch list1 target
+bsearch :: Ord a => V.Vector a -> a -> Bool
+bsearch vector target
+  | V.null vector = False
+  | target < element = bsearch vector1 target
+  | target > element = bsearch vector2 target
   | otherwise = True
   where
-    middle = length list `div` 2
-    element = list !! middle
-    list1 = take middle list
-    list2 = drop (middle + 1) list
+    middle = length vector `div` 2
+    element = vector V.! middle
+    vector1 = V.take middle vector
+    vector2 = V.drop (middle + 1) vector
 
-lowerBound :: [Int] -> Int -> Int
-lowerBound list target = _lowerBound list target 0 n
+lowerBound :: Ord a => V.Vector a -> a -> Int
+lowerBound vector target = _lowerBound vector target 0 n
   where
-    n = length list
+    n = length vector
 
-_lowerBound :: [Int] -> Int -> Int -> Int -> Int
-_lowerBound [] _ _ _ = -1
-_lowerBound list target left right
+_lowerBound :: Ord a => V.Vector a -> a -> Int -> Int -> Int
+_lowerBound vector target left right
+  | V.null vector = -1
   | left >= right = left
-  | target > element = _lowerBound list target (middle + 1) right
-  | otherwise = _lowerBound list target left middle
+  | target > element = _lowerBound vector target (middle + 1) right
+  | otherwise = _lowerBound vector target left middle
   where
     middle = (left + right) `div` 2
-    element = list !! middle
+    element = vector V.! middle
 
-upperBound :: [Int] -> Int -> Int
-upperBound list target = _upperBound list target 0 n
+upperBound :: Ord a => V.Vector a -> a -> Int
+upperBound vector target = _upperBound vector target 0 n
   where
-    n = length list
+    n = length vector
 
-_upperBound :: [Int] -> Int -> Int -> Int -> Int
-_upperBound [] _ _ _ = -1
-_upperBound list target left right
+_upperBound :: Ord a => V.Vector a -> a -> Int -> Int -> Int
+_upperBound vector target left right
+  | V.null vector = -1
   | left >= right = left
-  | target >= element = _upperBound list target (middle + 1) right
-  | otherwise = _upperBound list target left middle
+  | target >= element = _upperBound vector target (middle + 1) right
+  | otherwise = _upperBound vector target left middle
   where
     middle = (left + right) `div` 2
-    element = list !! middle
+    element = vector V.! middle
