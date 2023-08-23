@@ -45,31 +45,31 @@ bsearch vector target
     vector2 = V.drop (middle + 1) vector
 
 lowerBound :: Ord a => V.Vector a -> a -> Int
-lowerBound vector target = _lowerBound vector target 0 n
+lowerBound vector target = lowerBound' vector target 0 n
   where
     n = length vector
 
-_lowerBound :: Ord a => V.Vector a -> a -> Int -> Int -> Int
-_lowerBound vector target left right
+lowerBound' :: Ord a => V.Vector a -> a -> Int -> Int -> Int
+lowerBound' vector target left right
   | V.null vector = -1
   | left >= right = left
-  | target > element = _lowerBound vector target (middle + 1) right
-  | otherwise = _lowerBound vector target left middle
+  | target > element = lowerBound' vector target (middle + 1) right
+  | otherwise = lowerBound' vector target left middle
   where
     middle = (left + right) `div` 2
     element = vector V.! middle
 
 upperBound :: Ord a => V.Vector a -> a -> Int
-upperBound vector target = _upperBound vector target 0 n
+upperBound vector target = upperBound' vector target 0 n
   where
     n = length vector
 
-_upperBound :: Ord a => V.Vector a -> a -> Int -> Int -> Int
-_upperBound vector target left right
+upperBound' :: Ord a => V.Vector a -> a -> Int -> Int -> Int
+upperBound' vector target left right
   | V.null vector = -1
   | left >= right = left
-  | target >= element = _upperBound vector target (middle + 1) right
-  | otherwise = _upperBound vector target left middle
+  | target >= element = upperBound' vector target (middle + 1) right
+  | otherwise = upperBound' vector target left middle
   where
     middle = (left + right) `div` 2
     element = vector V.! middle
