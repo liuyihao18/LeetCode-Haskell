@@ -4,6 +4,7 @@ module Tree where
 
 import Data.List
 import Data.Vector qualified as V
+import Queue qualified as Q
 import Util
 
 data Tree a
@@ -37,10 +38,11 @@ toString :: Show a => Tree a -> String
 toString = addBrackets . unWordsWith ',' . toList
 
 toList :: Show a => Tree a -> [String]
-toList = dropWhileEnd (== "null") . _toList . singleton
+toList = dropWhileEnd (== "null") . _toList . Q.singleton
 
 -- BFS
-_toList :: Show a => [Tree a] -> [String]
-_toList [] = []
-_toList (Empty : ts) = "null" : _toList ts
-_toList (TreeNode val left right : ts) = show val : _toList (ts ++ [left, right])
+_toList :: Show a => Q.Queue (Tree a) -> [String]
+_toList queue = case Q.view queue of
+  Nothing -> []
+  Just (Empty, q) -> "null" : _toList q
+  Just (TreeNode val left right, q) -> show val : _toList (Q.insert right . Q.insert left $ q)
