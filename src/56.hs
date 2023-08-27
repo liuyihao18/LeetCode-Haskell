@@ -12,8 +12,8 @@ _merge :: [[Int]] -> [[Int]]
 _merge [] = []
 _merge [x] = [x]
 _merge (x : y : z)
-  | last x < head y = x : y : _merge z
-  | otherwise = [head x, last x `max` last y] : _merge z
+  | last x < head y = x : _merge (y : z)
+  | otherwise = _merge ([head x, last x `max` last y] : z)
 
 intervals1 :: [[Int]]
 intervals1 = [[1, 3], [2, 6], [8, 10], [15, 18]]
