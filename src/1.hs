@@ -9,19 +9,19 @@ import IO
 data Result = Result Bool Int Int
   deriving (Show)
 
-twoSum :: [Int] -> Int -> [Int]
-twoSum nums target = toIndex (foldl' (check nums target) result index)
+twoSum1 :: [Int] -> Int -> [Int]
+twoSum1 nums target = toIndex1 (foldl' (check1 nums target) result index)
   where
     index = [(i, j) | i <- [0 .. length nums - 1], j <- [0 .. length nums - 1]]
     result = Result False (-1) (-1)
 
-toIndex :: Result -> [Int]
-toIndex (Result True i1 i2) = [i1, i2]
-toIndex (Result False _ _) = [-1, -1]
+toIndex1 :: Result -> [Int]
+toIndex1 (Result True i1 i2) = [i1, i2]
+toIndex1 (Result False _ _) = [-1, -1]
 
-check :: [Int] -> Int -> Result -> (Int, Int) -> Result
-check _ _ res@(Result True _ _) _ = res
-check nums target _ (i, j)
+check1 :: [Int] -> Int -> Result -> (Int, Int) -> Result
+check1 _ _ res@(Result True _ _) _ = res
+check1 nums target _ (i, j)
   | i /= j && nums !! i + nums !! j == target = Result True i j
   | otherwise = Result False (-1) (-1)
 
@@ -75,11 +75,11 @@ main :: IO ()
 main = do
   putStrLn "-------- Method 1 --------"
   input nums1 target1
-  output (twoSum nums1 target1)
+  output (twoSum1 nums1 target1)
   input nums2 target2
-  output (twoSum nums2 target2)
+  output (twoSum1 nums2 target2)
   input nums3 target3
-  output (twoSum nums3 target3)
+  output (twoSum1 nums3 target3)
   putStrLn "-------- Method 2 --------"
   input nums1 target1
   output (twoSum2 nums1 target1)
