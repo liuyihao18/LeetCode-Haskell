@@ -6,7 +6,12 @@ import Data.List
 import IO
 
 eliminateMaximum :: [Int] -> [Int] -> Int
-eliminateMaximum dist speed = length $ takeWhile id $ zipWith (<=) [0 ..] $ sort $ zipWith (\x y -> (x - 1) `div` y) dist speed
+eliminateMaximum dist speed =
+  length $
+    takeWhile id $
+      zipWith (<=) [0 ..] $
+        sort $
+          zipWith (\x y -> (x - 1) `div` y) dist speed
 
 dist1 :: [Int]
 dist1 = [1, 3, 4]
