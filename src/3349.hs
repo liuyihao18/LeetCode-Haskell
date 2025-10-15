@@ -31,8 +31,8 @@ nums2 = [1, 2, 3, 4, 4, 4, 4, 5, 6, 7]
 k2 :: Int
 k2 = 5
 
-num3 :: [Int]
-num3 = [-15, 19]
+nums3 :: [Int]
+nums3 = [-15, 19]
 
 k3 :: Int
 k3 = 1
@@ -61,8 +61,8 @@ main = do
   output (hasIncreasingSubarrays nums1 k1)
   input nums2 k2
   output (hasIncreasingSubarrays nums2 k2)
-  input num3 k3
-  output (hasIncreasingSubarrays num3 k3)
+  input nums3 k3
+  output (hasIncreasingSubarrays nums3 k3)
   input nums4 k4
   output (hasIncreasingSubarrays nums4 k4)
   input nums5 k5
