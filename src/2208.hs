@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC  #-}
+{-# OPTIONS_GHC -Wall #-}
 
 module Solution where
 
