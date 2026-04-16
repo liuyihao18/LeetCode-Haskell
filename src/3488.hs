@@ -15,8 +15,8 @@ solveQueries nums = map (findClosest _nums m)
     _nums = V.fromList nums
     m = makeIndex _nums
 
-makeIndex :: V.Vector Int -> M.Map Int [Int]
-makeIndex _nums = foldl' (\m i -> emplaceValue (_nums V.! i) i m) M.empty index
+makeIndex :: V.Vector Int -> M.Map Int (V.Vector Int)
+makeIndex _nums = M.map V.fromList $ foldl' (\m i -> emplaceValue (_nums V.! i) i m) M.empty index
   where
     n = length _nums
     index = reverse [0 .. n - 1]
@@ -26,13 +26,13 @@ emplaceValue k v m = M.insert k (v : originValue) m
   where
     originValue = fromMaybe [] (M.lookup k m)
 
-findClosest :: V.Vector Int -> M.Map Int [Int] -> Int -> Int
+findClosest :: V.Vector Int -> M.Map Int (V.Vector Int) -> Int -> Int
 findClosest nums m query
   | nIndex <= 1 = -1
   | otherwise = minDistance1 `min` minDistance2
   where
     nNums = length nums
-    index = V.fromList $ fromMaybe [] $ M.lookup (nums V.! query) m
+    index = fromMaybe V.empty $ M.lookup (nums V.! query) m
     nIndex = length index
     i = lowerBound index query
     minDistance1 =
