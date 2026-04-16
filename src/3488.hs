@@ -13,10 +13,10 @@ solveQueries :: [Int] -> [Int] -> [Int]
 solveQueries nums = map (findClosest _nums m)
   where
     _nums = V.fromList nums
-    m = makeIndex _nums
+    m = M.map V.fromList $ makeIndex _nums
 
-makeIndex :: V.Vector Int -> M.Map Int (V.Vector Int)
-makeIndex _nums = M.map V.fromList $ foldl' (\m i -> emplaceValue (_nums V.! i) i m) M.empty index
+makeIndex :: V.Vector Int -> M.Map Int [Int]
+makeIndex _nums = foldl' (\m i -> emplaceValue (_nums V.! i) i m) M.empty index
   where
     n = length _nums
     index = reverse [0 .. n - 1]
