@@ -3,16 +3,12 @@
 module Solution where
 
 import IO
+import Util
 
 isPalindrome :: Int -> Bool
 isPalindrome x = x == y
   where
-    y = flipInt x 0
-
-flipInt :: Int -> Int -> Int
-flipInt x y
-  | x <= 0 = y
-  | otherwise = flipInt (x `div` 10) (y * 10 + x `mod` 10)
+    y = flipInt x
 
 x1 :: Int
 x1 = 121

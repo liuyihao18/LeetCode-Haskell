@@ -5,6 +5,14 @@ module Util where
 import Data.Char
 import Data.Vector qualified as V
 
+flipInt :: Int -> Int
+flipInt num = _flipInt num 0
+
+_flipInt :: Int -> Int -> Int
+_flipInt x y
+  | x <= 0 = y
+  | otherwise = _flipInt (x `div` 10) (y * 10 + x `mod` 10)
+
 strip :: String -> String
 strip = takeWhile (not . isSpace) . dropWhile isSpace
 

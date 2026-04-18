@@ -5,6 +5,7 @@ module Solution where
 import Data.Map qualified as M
 import Data.Maybe
 import IO
+import Util
 
 data Data = Data {m :: M.Map Int Int, index :: Int, minDistance :: Int}
 
@@ -25,14 +26,6 @@ _minMirrorPairDistance (Data m index minDistance) (num : nums)
     newDistance = index - lastIndex
     newMinDistance = minDistance `min` newDistance
     newIndex = index + 1
-
-flipInt :: Int -> Int
-flipInt num = _flipInt num 0
-
-_flipInt :: Int -> Int -> Int
-_flipInt x y
-  | x <= 0 = y
-  | otherwise = _flipInt (x `div` 10) (y * 10 + x `mod` 10)
 
 nums1 :: [Int]
 nums1 = [12, 21, 45, 33, 54]
